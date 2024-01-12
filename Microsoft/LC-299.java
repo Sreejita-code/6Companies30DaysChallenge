@@ -1,0 +1,28 @@
+package Microsoft;
+
+class Solution {
+    public String getHint(String secret, String guess) {
+        int[] s=new int[10];
+        int[] g=new int[10];
+        int cow=0;
+        int bull=0;
+        for(int i=0;i<secret.length();i++){
+            if(secret.charAt(i)==guess.charAt(i)){
+                bull++;
+            }
+            else{
+                s[secret.charAt(i)-'0']++;
+                g[guess.charAt(i)-'0']++;
+            }
+        }
+        for(int i=0;i<10;i++){
+            cow+=Math.min(s[i],g[i]);
+        }
+        String ans="";
+        ans+=Integer.toString(bull);
+        ans+='A';
+        ans+=Integer.toString(cow);
+        ans+='B';
+        return ans;
+    }
+}
